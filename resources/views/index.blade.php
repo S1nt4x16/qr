@@ -27,9 +27,7 @@
         Swal.fire({
             title: 'Succes',
             text: 'Berhasil Scannner',
-            showCancelButton: true,
             confirmButtonColor: '#308566',
-            cancelButtonColor: '#d33',
             confirmButtonText: 'Ok'
         }).then((result) => {
             if (result.value) {
@@ -64,7 +62,7 @@
     function onScanFailure(error) {
         // handle scan failure, usually better to ignore and keep scanning.
         // for example:
-        console.warn(`Code scan error = ${error}`);
+        // console.warn(`Code scan error = ${error}`);
     }
 
     let html5QrcodeScanner = new Html5QrcodeScanner(

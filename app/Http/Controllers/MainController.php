@@ -13,6 +13,6 @@ class MainController extends Controller
     }
 
     public function validasiQrcode(Request $request) {
-        
+        dd($request->QrCode);
     }
 }
