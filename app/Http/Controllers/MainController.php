@@ -12,7 +12,11 @@ class MainController extends Controller
         return view('index');
     }
 
-    public function validasiQrcode(Request $request) {
-        dd($request->QrCode);
+    public function store() {
+        
+        
+
     }
+
+    
 }
