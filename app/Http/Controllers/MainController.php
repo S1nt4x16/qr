@@ -28,26 +28,24 @@ class MainController extends Controller
             return redirect()->back()->with('error', 'QR Code Anda Tidak Ditemukan');   
         }
 
-        $count = DB::table('absen')
-            ->where('id', $id)
-            ->count();
+        // $count = DB::table('absen')
+        //     ->where('id', $id)
+        //     ->count();
 
-        if($piket = 'on') {
-            $piketvalue = 'Y'
-        } else {
-            $piketvalue = 'N'
-        }
+        // if($piket = 'on') {
+        //     $piketvalue = 'Y'
+        // } else {
+        //     $piketvalue = 'N'
+        // }
 
-        if($count = 0) {
-            DB::table('absen')
-        ->insert([
-            'piket' => $piketvalue
-            'keterangan' => $keterangan
-            'status' => 'in'
-            'created_at' => now()
-        ]);
-        } 
+        // if($count = 0) {
+        //     DB::table('absen')
+        // ->insert([
+        //     'piket' => $piketvalue
+        //     'keterangan' => $keterangan
+        //     'status' => 'in'
+        //     'created_at' => now()
+        // ]);
+        // } 
     }
-
-    
 }
