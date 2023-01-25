@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('absen', function (Blueprint $table) {
+        Schema::create('presensi', function (Blueprint $table) {
             $table->id();
             $table->integer('id_anggota');
             $table->enum('status', ["in", "out"]);
