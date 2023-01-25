@@ -40,7 +40,6 @@
             <center><h1>PRESENSI KOPASUS IT</h1></center>
         </div>
         <div class="card-body">
-            <button class="btn btn-info" onclick="alertFnc()"></button>
             <div class="card-title mb-4"><center><h2>SCAN YOUR QR CODE HERE</h2></center></div>
           <div id="reader" style="width:600px;"></div>
         </div>
@@ -90,106 +89,25 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script>
-    function alertFnc() {
-        console.log('y');
-        $('#modalForm').modal('show');
-        // Swal.fire({
-        //     title: 'Error!',
-        //     text: 'Do you want to continue',
-        //     icon: 'error',
-        //     confirmButtonText: 'Cool'
-        // });
-    }
+    
     function onScanSuccess(decodedText, decodedResult) {
-        // handle the scanned code as you like, for example:
-        // console.log(`Code matched = ${decodedText}`, decodedResult);
-        // alert(decodedText)
-        // $('#result').val(decodedText);
-        // let id = decodedText;
+        
 
         var id = decodedText;
 
         html5QrcodeScanner.clear().then(_ => {
-            // console.log(id);
             $('#id').val(id);
 
             $('#modalForm').modal('show');
             
-            // Swal.fire({
-            //     title: 'Error!',
-            //     text: 'Do you want to continue',
-            //     icon: 'error',
-            //     confirmButtonText: 'Cool'
-            // });
-            // var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            // $.ajax({
-                
-            //     url: "{{ route('validasi') }}",
-            //     type: 'POST',            
-            //     data: {
-            //         _methode : "POST",
-            //         _token: CSRF_TOKEN, 
-            //         qr_code : id
-            //     },            
-            //     success: function (response) { 
-            //         console.log(response);
-            //         if(response.status == 200){
-            //             alert('berhasil');
-            //         }else{
-            //             alert('gagal');
-            //         }
-                    
-            //     }
-            // });   
         }).catch(error => {
             alert('something wrong');
         });
 
-        // csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-        
-
-        
-
-        // Swal.fire({
-        //     title: 'Succes',
-        //     text: 'Berhasil Scannner',
-        //     confirmButtonColor: '#308566',
-        //     confirmButtonText: 'Ok'
-        // }).then((result) => {
-        //     if (result.value) {
-        //         $.ajax({
-        //             url: '{{ route('validasi') }}',
-        //             type: 'POST',
-        //             data: {
-        //                 '_method': 'DELETE',
-        //                 '_token': csrf_token,
-        //                 'QrCode': id
-        //             },
-        //             success: function (response) {
-        //                 Swal.fire({
-        //                     icon: 'success',
-        //                     type: 'succes',
-        //                     title: 'Success!',
-        //                     text: 'Data has been deleted!'
-        //                 });
-        //             },
-        //             error: function (xhr) {
-        //                 Swal.fire({
-        //                     type: 'error',
-        //                     title: 'Oops...',
-        //                     text: 'Something went wrong'
-        //                 })
-        //             }
-        //         })
-        //     }
-        // })
     }
 
     function onScanFailure(error) {
-        // handle scan failure, usually better to ignore and keep scanning.
-        // for example:
-        // console.warn(`Code scan error = ${error}`);
+ 
     }
 
     let html5QrcodeScanner = new Html5QrcodeScanner(
@@ -200,7 +118,6 @@
                 height: 250
             }
         },
-        /* verbose= */
         false);
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 </script>

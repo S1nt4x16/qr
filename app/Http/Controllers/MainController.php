@@ -19,7 +19,7 @@ class MainController extends Controller
         $id = $request->input('id');
         $piket = $request->input('piket');
         $keterangan = $request->input('keterangan');
-        
+
         $find = DB::table('tm_anggota')
             ->where('id', $id)
             ->count();
@@ -28,24 +28,69 @@ class MainController extends Controller
             return redirect()->back()->with('error', 'QR Code Anda Tidak Ditemukan');   
         }
 
-        // $count = DB::table('absen')
-        //     ->where('id', $id)
-        //     ->count();
+        $count = DB::table('presensi')
+            ->where('id_anggota', $id)
+            ->count();
 
-        // if($piket = 'on') {
-        //     $piketvalue = 'Y'
-        // } else {
-        //     $piketvalue = 'N'
-        // }
+        if($piket = 'on') {
+            $piketvalue = 'Y';
+        } else {
+            $piketvalue = 'N';
+        }
 
-        // if($count = 0) {
-        //     DB::table('absen')
-        // ->insert([
-        //     'piket' => $piketvalue
-        //     'keterangan' => $keterangan
-        //     'status' => 'in'
-        //     'created_at' => now()
-        // ]);
-        // } 
+        if($count == 0) {
+        $id_data = DB::table('presensi')
+            ->insertGetId([
+                'id_anggota' => $id,
+                'piket' => $piketvalue,
+                'keterangan' => $keterangan,
+                'status' => 'in',
+                'created_at' => now()
+                
+            ]);
+
+        $show = DB::table('presensi as a')
+            ->join('tm_anggota as b', 'b.id', '=', 'a.id_anggota')
+            ->select("b.name", "b.jekel", "b.kelas", "b.angkatan", "b.nrp", "a.status", "a.piket", "a.keterangan")
+            ->where('a.id', $id_data)
+            ->first();
+        }
+
+        if($count == 1) {
+        $id_data = DB::table('presensi')
+            ->insertGetId([
+                'id_anggota' => $id,
+                'piket' => $piketvalue,
+                'keterangan' => $keterangan,
+                'status' => 'out',
+                'created_at' => now()
+                
+            ]);
+
+        $show = DB::table('presensi as a')
+            ->join('tm_anggota as b', 'b.id', '=', 'a.id_anggota')
+            ->select("b.name", "b.jekel", "b.kelas", "b.angkatan", "b.nrp", "a.status", "a.piket", "a.keterangan")
+            ->where('a.id', $id_data)
+            ->first();
+        }
+        
+        if($count >= 2) {
+            
+           return redirect()->back()->with('error', 'GAUSAH ABSEN LAGI LU UDAH ABSEN TADI :)');
+        }
+        
+        if($show->jekel = 'L') {
+            $jekelvalue = 'Laki-Laki';
+        } else {
+            $jekelvalue = 'Perempuan';
+        }
+
+        if($show->status == 'in') {
+            $statusvalue = 'Masuk';
+        } else {
+            $statusvalue = 'Keluar';
+        }
+
+        return redirect()->back()->with('success', 'Selamat Anda Telah Berhasil Melakukan Presensi'. ' '. $show->name. ' '. 'Anda Telah'. ' ' . $statusvalue);
     }
 }
