@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('absen', function (Blueprint $table) {
             $table->id();
             $table->integer('id_anggota');
-            $table->enum('status', ["In", "Out"]);
+            $table->enum('status', ["in", "out"]);
             $table->string('keterangan');
             $table->enum('piket', ["Y", "N"]);
             $table->timestamps();

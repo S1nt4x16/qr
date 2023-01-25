@@ -15,6 +15,7 @@ use App\Http\Controllers\MainController;
 |
 */
 
-Route::get('/p', [QrController::class, 'index'])->name('p');
-Route::get('/pa', [MainController::class, 'index']);
+Route::get('/qr-generator', [QrController::class, 'index'])->name('qr-generator');
+Route::get('/', [MainController::class, 'index']);
 Route::post('/validasi', [MainController::class, 'validasi'])->name('validasi');
+Route::post('/store', [MainController::class, 'store'])->name('store');

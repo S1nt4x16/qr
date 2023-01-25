@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Presensi RPL Research Center (RC)</title>
+    <title>Presensi Kopasus IT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -33,9 +33,11 @@
 </head>
 <body>
 
+@include('message')
+
 <div class="card bg-dark border-primary text-light">
         <div class="card-header mb-2 text-primary">
-            <center><h1>PRESENSI RPL RESEARCH CENTER (RC)</h1></center>
+            <center><h1>PRESENSI KOPASUS IT</h1></center>
         </div>
         <div class="card-body">
             <button class="btn btn-info" onclick="alertFnc()"></button>
@@ -62,25 +64,23 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">From Keterangan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form action="" method="post" id="form-push">
+        <form action="{{ route('store') }}" method="post">
             @csrf
             <input type="hidden" name="id" id="id">
-            <div class="mb-4">
+            <div class="mb-4 mt-4">
                 <center>
                     <input type="checkbox" name="piket" id="piket">
                     <label for="piket">Ceklis Bagian Ini Jika Kalian Piket</label>
                 </center>
             </div>
-            <div class="mt-4">
+            <div class="m-4">
                 <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan Apa Hasil Eksplorasi Kalian" id="exampleInputPassword1">
             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-success">OK!</button>
+            </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-success">OK!</button>
-      </div>
     </div>
   </div>
 </div>
