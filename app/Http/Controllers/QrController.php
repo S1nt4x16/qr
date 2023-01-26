@@ -12,6 +12,6 @@ class QrController extends Controller
         $anggota = DB::table('tm_anggota')
             ->select("id", "name", "kelas", "angkatan", "nrp", "jekel")
             ->get();
-        return view('qr', ["anggota" => $anggota]);
+        return view('qr-generator.qr', ["anggota" => $anggota]);
     }
 }

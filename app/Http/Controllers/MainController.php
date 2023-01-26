@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MainController extends Controller
 {
     public function index() 
     {
 
-        return view('index');
+        return view('scan-qr.index');
     }
 
     public function store(Request $request) 
@@ -28,8 +29,11 @@ class MainController extends Controller
             return redirect()->back()->with('error', 'QR Code Anda Tidak Ditemukan');   
         }
 
+        $day = Carbon::today()->toDateString();
+
         $count = DB::table('presensi')
             ->where('id_anggota', $id)
+            ->whereDate('created_at', $day)
             ->count();
 
         if($piket = 'on') {
@@ -76,7 +80,7 @@ class MainController extends Controller
         
         if($count >= 2) {
             
-           return redirect()->back()->with('error', 'GAUSAH ABSEN LAGI LU UDAH ABSEN TADI :)');
+           return redirect()->back()->with('error', 'GAUSAH ABSEN LAGI LU UDAH ABSEN PULANG TADI :)');
         }
         
         if($show->jekel = 'L') {
