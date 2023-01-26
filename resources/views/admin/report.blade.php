@@ -30,7 +30,6 @@ Report Presensi
                         <th>Piket</th>
                         <th>Keterangan</th>
                         <th>Presensi Masuk/Keluar</th>
-                        <th>Action</th>
                     </tr>
               </thead>
               <tbody>
@@ -68,10 +67,6 @@ Report Presensi
                     </td>
                       <td>{{ $r->keterangan}}</td>
                       <td>{{ $r->created_at}}</td>
-                      <td>
-                          <a href="{{ url('/qr-generator/edit/'.$r->id) }}" class="btn btn-success">Edit</a> 
-                          <button type="button" class="btn btn-danger" data-coreui-toggle="modal" data-coreui-target="#hapus" data-coreui-name="{{ $r->name }}" data-coreui-url="{{ url('qr-generator/delete/'.$r->id) }}">Delete</button>
-                      </td> 
                   </tr>
                   @endforeach
               </tbody>
@@ -131,22 +126,6 @@ $(document).ready( function () {
     $('#table-report').DataTable();
       responsive: true
 } );
-</script>
-
-<script>
-const hapus = document.getElementById('hapus')
-hapus.addEventListener('show.coreui.modal', event => {
-  const button = event.relatedTarget
-  const name = button.getAttribute('data-coreui-name')
-  const url = button.getAttribute('data-coreui-url')
-  const title = hapus.querySelector('.modal-title')
-  const tanya = hapus.querySelector('.modal-body #tanya')
-  const formHapus = hapus.querySelector('#form-hapus')
-
-  title.textContent = 'Hapus ' + name 
-  tanya.textContent = 'Yakin Akan Menghapus ' + name + ' ?'
-  formHapus.action = url
-})
 </script>
 
 <script>

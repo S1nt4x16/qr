@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@section('header')
+@include('layouts.res')
+@endsection
 @section('title')
 QR GENERATOR!
 @endsection
@@ -7,7 +10,7 @@ QR Generator
 @endsection
 
 @section('content')
-<table class="table table-hover">
+<table class="table table-hover display responsive nowrap" id="table-qr" style="width:100%;">
   <thead>
     <tr>
         <th>No</th>
@@ -27,7 +30,13 @@ QR Generator
     <tr>
         <td>{{ $no++ }}</td>
         <td>{{ $a->name }}</td>
-        <td>{{ $a->jekel }}</td>
+        <td>
+          @if ($a->jekel == 'L')
+              Laki-Laki
+          @else
+              Perempuan
+          @endif
+        </td>
         <td>{{ $a->kelas }}</td>
         <td>{{ $a->angkatan }}</td>
         <td>{{ $a->nrp }}</td>
@@ -42,4 +51,13 @@ QR Generator
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"></script>
 </body>
 </html>
+@endsection
+@section('footer')
+@include('layouts.res-js')
+<script>
+$(document).ready( function () {
+    $('#table-qr').DataTable();
+      responsive: true
+} );
+</script>
 @endsection

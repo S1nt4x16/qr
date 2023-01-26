@@ -122,7 +122,7 @@
 
     <script src="{{ asset('coreui/vendors/@coreui/coreui/js/coreui.bundle.min.js') }}"></script>
     <script src="{{ asset('coreui/vendors/simplebar/js/simplebar.min.js') }}"></script>
-    <script src="{{ asset('jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('jquery-3.6.3.min.js') }}"></script>
     <script src="{{ asset('datatable/datatables.min.js') }}"></script>
     @yield('footer')
 </body>
