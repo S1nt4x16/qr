@@ -73,7 +73,7 @@
                 </center>
             </div>
             <div class="m-4">
-                <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan Apa Hasil Eksplorasi Kalian" id="exampleInputPassword1">
+                <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan Apa Hasil Eksplorasi Kalian" id="exampleInputPassword1" required autofocus>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>

@@ -34,15 +34,12 @@ class AuthController extends Controller
             return redirect()->route('report');
         }
 
-        return back()->withErrors(
-        [
-            'email' => 'The provided credentials do not match our records.',
-        ])  ->onlyInput('email');
+        return redirect()->back()->with('login', 'Error, Email Dan Password Anda SALAH!!!');
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
-        return view('admin.login');
+        return redirect()->route('login')->with('logout', 'Berhasil Logout');
     }
 }
