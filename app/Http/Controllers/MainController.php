@@ -36,7 +36,7 @@ class MainController extends Controller
             ->whereDate('created_at', $day)
             ->count();
 
-        if($piket = 'on') {
+        if($piket == 'on') {
             $piketvalue = 'Y';
         } else {
             $piketvalue = 'N';

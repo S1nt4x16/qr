@@ -76,7 +76,7 @@
                 <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan Apa Hasil Eksplorasi Kalian" id="exampleInputPassword1" required autofocus>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+              <button type="button" class="btn btn-danger" id="batal" data-bs-dismiss="modal">Batal</button>
               <button type="submit" class="btn btn-success">OK!</button>
             </div>
         </form>
@@ -91,6 +91,10 @@
 <script>
     
     $('#close').click(function() {
+      location.reload();
+    });
+
+    $('#batal').click(function() {
       location.reload();
     });
 
