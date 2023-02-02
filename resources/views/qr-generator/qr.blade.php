@@ -47,10 +47,6 @@ QR Generator
     @endforeach
   </tbody>
 </table>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"></script>
-</body>
-</html>
 @endsection
 @section('footer')
 @include('layouts.res-js')
