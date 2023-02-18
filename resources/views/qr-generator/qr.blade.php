@@ -41,7 +41,7 @@ QR Generator
         <td>{{ $a->angkatan }}</td>
         <td>{{ $a->nrp }}</td>
         <td>
-            {!! QrCode::size(400)->generate($a->id) !!}
+          <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(400)->generate($a->id)) !!}">
         </td>
     </tr>
     @endforeach
