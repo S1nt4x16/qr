@@ -68,7 +68,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Form Keterangan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close"></button>
       </div>
-        <form action="{{ route('store') }}" method="post">
+        <form action="{{ route('store') }}" method="post" id="formQR">
             @csrf
             <input type="hidden" name="id" id="id">
             <div class="mb-4 mt-4">
@@ -82,7 +82,10 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" id="batal" data-bs-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-success">OK!</button>
+              <div class="spinner-border s text-success" style="display: none;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <button type="submit" id="subb" class="btn btn-success">OK!</button>
             </div>
         </form>
     </div>
@@ -94,9 +97,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Form Keterangan</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closee"></button>
       </div>
-        <form action="{{ route('store') }}" method="post">
+        <form action="{{ route('store') }}" method="post" id="formNrp">
             @csrf
             <input type="hidden" name="nrp" id="nrpInput2">
             <div class="mb-4 mt-4">
@@ -109,8 +112,11 @@
                 <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan Apa Hasil Eksplorasi Kalian" id="exampleInputPassword1" required autofocus>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" id="batal" data-bs-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-success">OK!</button>
+              <button type="button" class="btn btn-danger" id="batall" data-bs-dismiss="modal">Batal</button>
+              <div class="spinner-border text-success" style="display: none;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <button type="submit" id="sub" class="btn btn-success">OK!</button>
             </div>
         </form>
     </div>
@@ -131,7 +137,29 @@
       location.reload();
     });
 
- 
+    $('#closee').click(function() {
+      location.reload();
+    });
+
+    $('#batall').click(function() {
+      location.reload();
+    });
+
+    $('#formNrp').submit(function() {
+      $('.spinner-border').show();
+      $('#sub').hide();
+    });
+
+    $('#formQR').submit(function() {
+      $('.s').show();
+      $('#subb').hide();
+    });
+
+
+    setTimeout(function () { 
+      location.reload();
+    }, 1800000);
+    
 
     function OnInputNrp() 
     {

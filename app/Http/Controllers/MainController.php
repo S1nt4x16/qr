@@ -117,9 +117,10 @@ class MainController extends Controller
 
             $day = Carbon::today()->toDateString();
 
-            $countNrp = DB::table('tm_anggota')
+            $countNrp = DB::table('presensi as a')
+                ->join('tm_anggota as b', 'b.id', '=', 'a.id_anggota')
                 ->where('nrp', $nrp)
-                ->whereDate('created_at', $day)
+                ->whereDate('a.created_at', $day)
                 ->count();
 
             $idd = DB::table('tm_anggota')
@@ -133,7 +134,7 @@ class MainController extends Controller
                 $piketvalue = 'N';
             }
 
-            if($countNrp === 0) 
+            if($countNrp == 0) 
             {
                 $nrp_data = DB::table('presensi')
                     ->insertGetId([
@@ -152,7 +153,7 @@ class MainController extends Controller
                     ->first();
             }
 
-            if($countNrp === 1) 
+            if($countNrp == 1) 
             {
                 $nrp_data = DB::table('presensi')
                     ->insertGetId([
