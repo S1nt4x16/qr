@@ -27,7 +27,7 @@ class QrController extends Controller
             ->first();
 
         $pdf = Pdf::loadView('qr-generator.pdf', ['a' => $anggota1]);
-        return $pdf->download('qr.pdf');
+        return $pdf->download($anggota1->name.'.pdf');
         // return view('qr-generator.pdf',['a' => $anggota1]);
     }
 
